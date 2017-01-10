@@ -25,5 +25,18 @@ public class LaserLength : MonoBehaviour {
 		transform.localScale = new Vector3 (-hit.distance/2.9f, transform.localScale.y, transform.localScale.z);
 		LaserHit.transform.position = hit.point;
 		LaserHit.transform.rotation = Quaternion.Euler (0.0f, 0.0f, Mathf.Min(hit.normal.y * 180, 0) + -hit.normal.x * 90);
+	
+		if (hit) {
+			if (hit.collider.tag == "Enemy") {
+				int facing = -1;
+				if (!control.m_FacingRight) {
+					facing = 1;
+				}
+				hit.collider.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (1.0f, 0.0f) * -50 * facing);
+				Color ecolor = hit.collider.GetComponent<SpriteRenderer> ().color;
+				//hit.collider.GetComponent<SpriteRenderer> ().color = new Color (ecolor.r + 1, ecolor.b, ecolor.g);
+				hit.collider.GetComponent<SpriteRenderer> ().color = Color.red;
+			}
+		}
 	}	
 }
