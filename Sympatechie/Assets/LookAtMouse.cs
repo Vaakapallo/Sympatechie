@@ -60,7 +60,7 @@ public class LookAtMouse : MonoBehaviour {
 					}
 				}
 			}
-			control.m_Rigidbody2D.AddForce (transform.rotation * new Vector2 (1.0f, 0.0f) * 50 * facing);
+			control.m_Rigidbody2D.AddForce (transform.rotation * new Vector2 (1.0f, 0.0f) * 30 * facing);
 		} else {
 			if (Laser.activeSelf) {
 				Laser.SetActive (false);
