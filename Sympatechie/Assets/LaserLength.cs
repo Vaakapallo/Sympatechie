@@ -7,10 +7,12 @@ public class LaserLength : MonoBehaviour {
 
 	PlatformerCharacter2D control;
 	public GameObject LaserHit;
+	private ChangeImageOnPress UI;
 
 	// Use this for initialization
 	void Start () {
 		control = GetComponentInParent<PlatformerCharacter2D> ();
+		UI = FindObjectOfType<ChangeImageOnPress> ();
 	}
 	
 	// Update is called once per frame
@@ -34,8 +36,13 @@ public class LaserLength : MonoBehaviour {
 				}
 				hit.collider.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (1.0f, 0.0f) * -50 * facing);
 				Color ecolor = hit.collider.GetComponent<SpriteRenderer> ().color;
-				//hit.collider.GetComponent<SpriteRenderer> ().color = new Color (ecolor.r + 1, ecolor.b, ecolor.g);
-				hit.collider.GetComponent<SpriteRenderer> ().color = Color.red;
+				if (UI.gunColor == GunColor.Red) {
+					hit.collider.GetComponent<SpriteRenderer> ().color = new Color (ecolor.r + 0.01f, ecolor.g - 0.01f, ecolor.b - 0.01f);
+				} else if (UI.gunColor == GunColor.Blue) {
+					hit.collider.GetComponent<SpriteRenderer> ().color = new Color (ecolor.r - 0.01f, ecolor.g - 0.01f, ecolor.b + 0.01f);
+				} else if(UI.gunColor == GunColor.Yellow){
+					hit.collider.GetComponent<SpriteRenderer> ().color = new Color (ecolor.r + 0.01f, ecolor.g + 0.01f, ecolor.b - 0.01f);
+				}
 			}
 		}
 	}	
