@@ -11,6 +11,7 @@ public class LookAtMouse : MonoBehaviour {
 	private ChangeImageOnPress UI;
 	public GameObject Laser;
 	public GameObject Tear;
+	public GameObject Frustration;
 	private float timer = 0.0f;
 	public GameObject Barrel;
 	private int counter = 0;
@@ -43,21 +44,27 @@ public class LookAtMouse : MonoBehaviour {
 					Laser.SetActive (true);
 				}
 				transform.localPosition = startingPosition + (transform.rotation * new Vector3 (0.15f * Mathf.Sin (Time.time * 9), 0.06f * Mathf.Cos (Time.time * 10), 0.0f));
-			}
-			if (UI.gunColor == GunColor.Blue) {
+			} else if (UI.gunColor == GunColor.Blue) {
 				if (Laser.activeSelf) {
 					Laser.SetActive (false);
 				}
 				timer += Time.deltaTime;
 				counter++;
-				print (Time.deltaTime);
 				if (timer % 0.1 < 0.05) {
-					GameObject newBullet = Instantiate (Tear, Barrel.transform.position, Quaternion.identity);
+					GameObject newBullet = Instantiate (Tear, Barrel.transform.position, Quaternion.Euler(facing * transform.rotation.eulerAngles));
 					if (counter % 2 == 0) {
 						newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (-0.2f - 0.2f * Random.value , 1.0f) * 400 * facing);
 					} else {
 						newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (0.2f + 0.2f * Random.value, -1.0f) * 400 * facing);
 					}
+				}
+			} else if(UI.gunColor == GunColor.Yellow){
+				if (Laser.activeSelf) {
+					Laser.SetActive (false);
+				}
+				timer += Time.deltaTime;
+				if (timer % 0.1 < 0.05) {
+					Instantiate (Frustration, Barrel.transform.position, Quaternion.Euler(0,0,Random.Range(0,360)));
 				}
 			}
 			control.m_Rigidbody2D.AddForce (transform.rotation * new Vector2 (1.0f, 0.0f) * 30 * facing);

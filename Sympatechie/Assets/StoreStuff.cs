@@ -5,6 +5,7 @@ using UnityEngine;
 public class StoreStuff : MonoBehaviour {
 
 	public GameObject SplashEffect;
+	public GameObject HitEffect;
 
 	// Use this for initialization
 	void Awake () {
@@ -13,5 +14,9 @@ public class StoreStuff : MonoBehaviour {
 
 	public void CreateSplash(Transform transform){
 		Instantiate (SplashEffect, transform.position, Quaternion.identity);
+	}
+
+	public void CreateHit(Transform transform){
+		Instantiate (HitEffect, transform.position, Quaternion.identity);
 	}
 }
