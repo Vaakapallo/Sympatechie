@@ -5,10 +5,11 @@ using UnityEngine;
 public class SplashOnHit : MonoBehaviour {
 
 	bool hit = false;
+	private StoreStuff logic;
 
 	// Use this for initialization
 	void Start () {
-		
+		logic = FindObjectOfType<StoreStuff> ();
 	}
 	
 	// Update is called once per frame
@@ -21,10 +22,11 @@ public class SplashOnHit : MonoBehaviour {
 			hit = true;
 			if (col.transform.tag == "Enemy") {
 				col.collider.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (1.0f, 0.0f) * -50);
-				Color ecolor = col.collider.GetComponent<SpriteRenderer> ().color;
-				col.collider.GetComponent<SpriteRenderer> ().color = new Color (ecolor.r - 0.04f, ecolor.g - 0.04f, ecolor.b + 0.04f);
+				col.collider.GetComponent<AI> ().AddColor (GunColor.Blue);
+			} else {
+				logic.Miss ();
 			}
-			FindObjectOfType<StoreStuff>().CreateSplash (transform);
+			logic.CreateSplash (transform);
 			Destroy (gameObject);
 		}
 	}

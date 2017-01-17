@@ -1,1 +1,1 @@
-﻿public enum GunColor {Red, Blue, Yellow};
+﻿public enum GunColor {Red, Blue, Yellow, None};

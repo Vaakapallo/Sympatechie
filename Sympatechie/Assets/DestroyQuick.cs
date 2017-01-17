@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DestroyQuick : MonoBehaviour {
 
+	public float Time = 1.0f;
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (WaitAndDestroy ());
@@ -15,7 +17,7 @@ public class DestroyQuick : MonoBehaviour {
 	}
 
 	IEnumerator WaitAndDestroy(){
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (Time);
 		Destroy (gameObject);
 	}
 }
