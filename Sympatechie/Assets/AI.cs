@@ -10,11 +10,13 @@ public class AI : MonoBehaviour {
 	private GunColor primedForExplosion = GunColor.None;
 	private float timer = 0f;
 	private Color storedColor;
+	private LookAtMouse look;
 
 	// Use this for initialization
 	void Start () {
 		store = FindObjectOfType<StoreStuff> ();
 		sprite = GetComponent<SpriteRenderer> ();
+		look = FindObjectOfType<LookAtMouse> ();
 		StartCoroutine (ChangeDirection());	
 	}
 	
@@ -77,6 +79,7 @@ public class AI : MonoBehaviour {
 					store.YellowExplosion (transform);
 				}
 				//store.CreateExplosion (transform);
+				look.Death();
 				Destroy (gameObject);
 				return;
 			} 

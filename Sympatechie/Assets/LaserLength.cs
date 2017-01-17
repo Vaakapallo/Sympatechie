@@ -16,13 +16,13 @@ public class LaserLength : MonoBehaviour {
 		control = GetComponentInParent<PlatformerCharacter2D> ();
 		UI = FindObjectOfType<ChangeImageOnPress> ();
 		store = FindObjectOfType<StoreStuff> ();
-		rayMask |= 1 << LayerMask.NameToLayer ("Player");
-		rayMask |= 1 << LayerMask.NameToLayer ("Bullet");
+		rayMask |= 0 << LayerMask.NameToLayer ("Player");
+		rayMask |= 0 << LayerMask.NameToLayer ("Bullet");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.DrawRay (transform.position, transform.rotation * new Vector3 (1.0f, 0.0f, 0.0f));
+		//Debug.DrawRay (transform.position, transform.rotation * new Vector3 (1.0f, 0.0f, 0.0f));
 		RaycastHit2D hit;
 		if (control) {
 			if (control.m_FacingRight) {

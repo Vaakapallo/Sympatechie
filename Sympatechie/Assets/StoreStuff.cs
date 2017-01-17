@@ -45,12 +45,12 @@ public class StoreStuff : MonoBehaviour {
 	}
 
 	public void BlueExplosion(Transform transform){
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 30; i++) {
 			GameObject newBullet = Instantiate (Bluellet, transform.position, Quaternion.Euler (transform.rotation.eulerAngles));
 			if (i % 2 == 0) {
-				newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (-0.5f - 0.5f * Random.value, 1.0f) * 600);
+				newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (-0.5f - 1f * Random.value, 1.0f) * 600);
 			} else {
-				newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (0.5f + 0.5f * Random.value, -1.0f) * 600);
+				newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (0.5f + 1f * Random.value, -1.0f) * 600);
 			}		
 		}
 	}

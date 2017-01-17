@@ -93,7 +93,7 @@ public class LookAtMouse : MonoBehaviour
 					}
 					counter++;
 					if (timer % 0.1 < 0.05) {
-						BlueAmmo -= 0.5f;
+						BlueAmmo -= 0.4f;
 						GameObject newBullet = Instantiate (Tear, Barrel.transform.position, Quaternion.Euler (facing * transform.rotation.eulerAngles));
 						if (counter % 2 == 0) {
 							newBullet.GetComponent<Rigidbody2D> ().AddForce (transform.rotation * new Vector2 (-0.2f - 0.2f * Random.value, 1.0f) * 600 * facing);
@@ -150,6 +150,13 @@ public class LookAtMouse : MonoBehaviour
 		YellowAmmo += 0.2f;
 		if (YellowAmmo > 100) {
 			YellowAmmo = 100;
+		}
+	}
+
+	public void Death(){
+		BlueAmmo += 5;
+		if (BlueAmmo > 100) {
+			BlueAmmo = 100;
 		}
 	}
 }
